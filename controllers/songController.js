@@ -2,7 +2,13 @@ const Song = require("../models/Song");
 
 exports.getSongs = async (req, res, next) => {
     try {
-        const songs = await Song.find();
+        let songs;
+        if(req.query.title) {
+            songs = await Song.find({title: req.query.title});
+        } else {
+            songs = await Song.find();
+        }
+        
         res.status(200).json({songs, requestedUser: req.userData});
     } catch (error) {
         res.status(400).json({message: "Request Failed"});

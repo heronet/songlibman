@@ -3,9 +3,13 @@ const tokenValidator = require('../middleware/tokenValidator');
 
 const router = require('express').Router();
 
+// Validate Token
+router.use(tokenValidator);
+
 router.route('/')
-      .post(tokenValidator, addSong)
-      .get(tokenValidator, getSongs)
+      .post(addSong)
+      .get(getSongs);
 router.route('/:id')
-      .get(tokenValidator, getSong)
+      .get(getSong);
+
 module.exports = router;
