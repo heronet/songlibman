@@ -5,6 +5,7 @@ const cors = require('cors');
 
 const usersRoute = require('./routes/usersRoute');
 const songsRoute = require('./routes/songsRoute');
+const artistsRouter = require('./routes/artistsRoute');
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.use(express.json());
 
 app.use('/api/users/', usersRoute);
 app.use('/api/songs/', songsRoute);
+app.use('/api/artists/', artistsRouter);
 
 mongoose.connect(process.env.DB_CONNECTION_STRING, {
     useCreateIndex: true,
